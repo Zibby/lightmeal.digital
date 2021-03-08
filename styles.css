@@ -1,0 +1,50 @@
+:root {
+  --primary-color: #455363;
+  --background-color: #1f2935;
+  --text-color: #fff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+* {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.caption {
+    display: block;
+}
+
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  padding: 1em;
+}
+
+.list a {
+  background-color: var(--primary-color);
+  padding:8px;
+  margin-top:7px;
+  color: var(--text-color);
+  flex: 0 1 24%;
+  text-transform: capitalize;
+}
+
+.list img {
+  width: 70%;
+}
+
+p.title {
+  font-size: 5vw;
+}
+
+p.desc {
+  font-size: 2vw;
+}
