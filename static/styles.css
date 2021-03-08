@@ -1,6 +1,8 @@
 :root {
     --primary-color: #455363;
     --secondary-color: #48A9A6;
+    --tertiary-color: #9CFC97;
+    --foruth-color: #5EFC8D;
     --background-color: #1f2935;
     --text-color: #fff;
 }
@@ -8,6 +10,28 @@
 body {
     background-color: var(--background-color);
     color: var(--text-color);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--secondary-color);
+}
+
+.topnav a {
+    float: left;
+    color: var(--text-color);
+    font-size: 2vh;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: var(--tertiary-color);
+    color: black;
 }
 
 .centerimg {

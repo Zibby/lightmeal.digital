@@ -89,12 +89,40 @@ func recipeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, pageData)
 }
 
+// RootRecipes creates cards on home page
+var RootRecipes []string
+
+type RootData struct {
+	RootRecipes []string
+}
+
+func listRecipes() {
+	files, err := ioutil.ReadDir("./recipes")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, f := range files {
+		RootRecipes = append(RootRecipes, f.Name())
+	}
+}
+
+func rootHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("./static/index.html"))
+	pageData := RootData{
+		RootRecipes: RootRecipes,
+	}
+	fmt.Println(pageData)
+	tmpl.Execute(w, pageData)
+}
+
 func main() {
-	fmt.Println("vim-go")
+	listRecipes()
 	r := mux.NewRouter()
 
-	spa := spaHandler{staticPath: "static", indexPath: "index.html"}
-	r.Path("/").Handler(spa)
+	about := spaHandler{staticPath: "static", indexPath: "about.html"}
+	r.Path("/").HandlerFunc(rootHandler)
+	r.Path("/about").Handler(about)
 
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	r.HandleFunc("/recipe/{recipe}", recipeHandler)

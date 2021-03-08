@@ -4,14 +4,18 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Gomeal</title>
-    <meta name="description" content="gomeal">
+    <title>lightmeal - {{.PageTitle}}</title>
+    <meta name="description" content="lightmeal">
     <meta name="author" content="Zibby Mofrad">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 
 <body>
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="/about">About</a>
+    </div>
     <p class="title">{{.PageTitle}}</p>
     <p class="author">{{.Author}}</p>
     <img src="{{.Img}}" alt="image of {{.PageTitle}}" class="centerimg">

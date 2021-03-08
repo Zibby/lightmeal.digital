@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-mkdir -p recipe "$1"
+mkdir -p recipes/"$1"
 
 cat >> recipes/"$1"/recipe.yml << EOF
 Title: GIVE ME A TITLE
