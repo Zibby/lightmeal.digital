@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Gomeal</title>
+    <meta name="description" content="gomeal">
+    <meta name="author" content="Zibby Mofrad">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <p class="title">{{.PageTitle}}</p>
+    <img src="{{.Img}}" height=200vh alt="image of {{.PageTitle}}" class="center">
+    <p class="desc ">{{.PageDesc}}</p>
+
+    <div class="recipe ">
+        <div class="ingredients ">
+            <h1>Ingredients</h1>
+            <ul>
+                {{range .Ingredients}}
+                <li>{{.}}</li>
+                {{end}}
+            </ul>
+        </div>
+        <div class="instructions">
+            <h1>Instructions</h1>
+            <ul>
+                {{range .Instructions}}
+                <li>{{.}}</li>
+                {{end}}
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

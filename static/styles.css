@@ -1,0 +1,97 @@
+:root {
+    --primary-color: #455363;
+    --secondary-color: #48A9A6;
+    --background-color: #1f2935;
+    --text-color: #fff;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1em;
+    text-align: center;
+}
+
+.list a {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    flex: 0 1 32%;
+    text-transform: capitalize;
+    text-align: center;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 8px;
+    font-size: 2vw
+}
+
+.list img {
+    width: 70%;
+}
+
+p.title {
+    font-size: 5vw;
+    padding: 8px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+p.desc {
+    font-size: 2vw;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.recipe {
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ingredients {
+    background-color: var(--secondary-color);
+    float: left;
+    padding: 8px;
+    flex: 0 1 24%;
+    height: 100%;
+    border-radius: 25px;
+}
+
+li.ingredients {
+    font-size: 2vw;
+    text-transform: capitalize;
+    margin: 8px;
+}
+
+.instructions {
+    background-color: var(--primary-color);
+    flex: 0 1 74%;
+    float: left;
+    padding: 8px;
+    padding-top: 8px;
+    border-radius: 25px;
+    margin: 8px;
+}
+
+li.instructions {
+    font-size: 2vw;
+    padding: 8px;
+    text-transform: capitalize;
+}
