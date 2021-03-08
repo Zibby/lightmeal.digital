@@ -23,6 +23,7 @@ type spaHandler struct {
 type RecipeInfo struct {
 	PageTitle    string   `yaml:"Title"`
 	PageDesc     string   `yaml:"Description"`
+	Author       string   `yaml:"Author"`
 	Ingredients  []string `yaml:"Ingredients"`
 	Instructions []string `yaml:"Instructions"`
 	Img          string
@@ -80,6 +81,7 @@ func recipeHandler(w http.ResponseWriter, r *http.Request) {
 	pageData := RecipeInfo{
 		PageTitle:    recipestruct.PageTitle,
 		PageDesc:     recipestruct.PageDesc,
+		Author:       recipestruct.Author,
 		Ingredients:  recipestruct.Ingredients,
 		Instructions: recipestruct.Instructions,
 		Img:          "/recipe-content/" + rec + "/card.jpg",
