@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -92,7 +91,7 @@ func recipeHandler(w http.ResponseWriter, r *http.Request) {
 // RootRecipes creates cards on home page
 var RootRecipes []string
 
-type RootData struct {
+type rootData struct {
 	RootRecipes []string
 }
 
@@ -108,18 +107,39 @@ func listRecipes() {
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("loading root")
 	tmpl := template.Must(template.ParseFiles("./static/index.html"))
-	pageData := RootData{
+	pageData := rootData{
 		RootRecipes: RootRecipes,
 	}
-	fmt.Println(pageData)
 	tmpl.Execute(w, pageData)
+}
+
+// RequestLoggerMiddleware logs
+func RequestLoggerMiddleware(r *mux.Router) mux.MiddlewareFunc {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+			start := time.Now()
+			defer func() {
+				log.Printf(
+					"[%s] [%v] %s %s %s %s %s",
+					req.Method,
+					time.Since(start),
+					req.UserAgent(),
+					req.RemoteAddr,
+					req.Host,
+					req.URL.Path,
+					req.URL.RawQuery,
+				)
+			}()
+			next.ServeHTTP(w, req)
+		})
+	}
 }
 
 func main() {
 	listRecipes()
 	r := mux.NewRouter()
+	r.Use(RequestLoggerMiddleware(r))
 
 	about := spaHandler{staticPath: "static", indexPath: "about.html"}
 	r.Path("/").HandlerFunc(rootHandler)
