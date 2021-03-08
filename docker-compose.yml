@@ -6,7 +6,7 @@ services:
     restart: always
     labels:
       - traefik.enable=true
-      - traefik.http.routers.lightmeal.rule=Host(`lightmeal.digital`,`lightmeal.zibby.technology`, `www.zibby.technology`)
+      - traefik.http.routers.lightmeal.rule=Host(`lightmeal.digital`,`lightmeal.zibby.technology`)
       - traefik.http.routers.lightmeal.entrypoints=web-secure
       - traefik.http.routers.lightmeal.tls.certresolver=le
       - traefik.http.routers.lightmeal.middlewares=secured@file
