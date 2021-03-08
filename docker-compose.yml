@@ -1,0 +1,27 @@
+version: "3"
+services:
+  lightmeal:
+    container_name: lightmeal
+    build: .
+    restart: always
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.lightmeal.rule=Host(`lightmeal.digital`,`lightmeal.zibby.technology`, `www.zibby.technology`)
+      - traefik.http.routers.lightmeal.entrypoints=web-secure
+      - traefik.http.routers.lightmeal.tls.certresolver=le
+      - traefik.http.routers.lightmeal.middlewares=secured@file
+      - traefik.http.middlewares.lightmeal.redirectscheme.scheme=https
+      - traefik.frontend.headers.STSSeconds=31536000
+      - traefik.frontend.headers.STSIncludeSubdomains=true
+      - traefik.frontend.headers.STSPreload=true
+    networks:
+      - traefik_default
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://10.11.0.6:3100/loki/api/v1/push"
+        loki-retries: "5"
+        loki-batch-size: "400"
+networks:
+  traefik_default:
+    external: true
