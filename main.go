@@ -108,6 +108,7 @@ func listRecipes() {
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("loading root")
 	tmpl := template.Must(template.ParseFiles("./static/index.html"))
 	pageData := RootData{
 		RootRecipes: RootRecipes,
